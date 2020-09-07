@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="502.0" prefWidth="895.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane layoutX="8.0" layoutY="14.0" prefHeight="474.0" prefWidth="880.0" style="-fx-border-color: black; -fx-border-radius: 10;">
+         <children>
+            <Text fill="#1f53a6" layoutX="125.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Modify Product" textAlignment="CENTER" wrappingWidth="120.0">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Text>
+            <TextField fx:id="partSearchField" layoutX="565.0" layoutY="20.0" prefHeight="25.0" prefWidth="120.0" />
+            <Button fx:id="partAddButton" layoutX="685.0" layoutY="204.0" mnemonicParsing="false" onMouseClicked="#handlePartAddButton" prefHeight="25.0" prefWidth="80.0" text="Add" />
+            <Button fx:id="partSearchButton" layoutX="473.0" layoutY="20.0" mnemonicParsing="false" onMouseClicked="#handlePartSearchButton" prefHeight="25.0" prefWidth="80.0" text="Search" />
+            <TableView fx:id="partTable" layoutX="353.0" layoutY="52.0" prefHeight="140.0" prefWidth="424.0">
+               <columns>
+                  <TableColumn fx:id="partIDCol" prefWidth="106.0" text="Part ID" />
+                  <TableColumn fx:id="partNameCol" prefWidth="106.0" text="Part Name" />
+                  <TableColumn fx:id="partStockCol" prefWidth="106.0" text="Current Inventory" />
+                  <TableColumn fx:id="partPriceCol" prefWidth="106.0" text="Cost per Unit" />
+               </columns>
+            </TableView>
+            <TableView fx:id="associatedPartTable" layoutX="353.0" layoutY="240.0" prefHeight="140.0" prefWidth="424.0">
+               <columns>
+                  <TableColumn fx:id="associatedpartIDCol" prefWidth="106.0" text="Part ID" />
+                  <TableColumn fx:id="associatedpartNameCol" prefWidth="106.0" text="Part Name" />
+                  <TableColumn fx:id="associatedpartStockCol" prefWidth="106.0" text="Current Inventory" />
+                  <TableColumn fx:id="associatedpartPriceCol" prefWidth="106.0" text="Cost per Unit" />
+               </columns>
+            </TableView>
+            <Button fx:id="partDeleteButton" layoutX="685.0" layoutY="386.0" mnemonicParsing="false" onMouseClicked="#handlePartDeleteButton" prefHeight="25.0" prefWidth="80.0" text="Delete" />
+            <Button fx:id="productCancelButton" layoutX="685.0" layoutY="429.0" mnemonicParsing="false" onMouseClicked="#handleProductCancelButton" prefHeight="25.0" prefWidth="80.0" text="Cancel" />
+            <Button fx:id="productSaveButton" layoutX="593.0" layoutY="429.0" mnemonicParsing="false" onMouseClicked="#handleProductSaveButton" prefHeight="25.0" prefWidth="80.0" text="Save" />
+            <TextField fx:id="textFieldMin" layoutX="219.0" layoutY="280.0" prefHeight="25.0" prefWidth="86.0" promptText="Min Stock" />
+            <TextField fx:id="textFieldMax" layoutX="88.0" layoutY="280.0" prefHeight="25.0" prefWidth="86.0" promptText="Max Stock" />
+            <TextField fx:id="textFieldPrice" layoutX="116.0" layoutY="245.0" prefHeight="25.0" prefWidth="137.0" promptText="Part Price per Unit" />
+            <TextField fx:id="textFieldInventory" layoutX="116.0" layoutY="210.0" prefHeight="25.0" prefWidth="137.0" promptText="Current Inventory" />
+            <TextField fx:id="textFieldName" layoutX="116.0" layoutY="177.0" prefHeight="25.0" prefWidth="137.0" promptText="Part Name" />
+            <TextField fx:id="textFieldID" disable="true" editable="false" layoutX="116.0" layoutY="140.0" prefHeight="25.0" prefWidth="137.0" promptText="Auto Gen - Disabled" />
+            <Text layoutX="188.0" layoutY="297.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Min" />
+            <Text layoutX="49.0" layoutY="297.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Max" />
+            <Text layoutX="34.0" layoutY="262.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Price/Cost" />
+            <Text layoutX="36.0" layoutY="227.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Inventory" />
+            <Text layoutX="45.0" layoutY="194.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name" />
+            <Text layoutX="55.0" layoutY="157.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="errorBox" layoutX="328.0" layoutY="175.0" prefHeight="140.0" prefWidth="212.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 10;" visible="false">
+         <children>
+            <Text fill="#f20606" layoutX="5.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Product must have at least 1 part" textAlignment="CENTER" wrappingWidth="237.341796875" />
+            <Button fx:id="errorOKButton" layoutX="84.0" layoutY="90.0" mnemonicParsing="false" onMouseClicked="#handleErrorOKButton" prefHeight="25.0" prefWidth="80.0" text="OK" />
+            <Text fill="#f20606" layoutX="5.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ERROR:" textAlignment="CENTER" wrappingWidth="237.341796875" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="priceErrorBox" layoutX="338.0" layoutY="154.0" prefHeight="140.0" prefWidth="212.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 10;" visible="false">
+         <children>
+            <Text fill="#f20606" layoutX="5.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Product price must be &gt;= sum of part's price" textAlignment="CENTER" wrappingWidth="237.341796875" />
+            <Button fx:id="priceErrorOKButton" layoutX="84.0" layoutY="90.0" mnemonicParsing="false" onMouseClicked="#handlePriceErrorOKButton" prefHeight="25.0" prefWidth="80.0" text="OK" />
+            <Text fill="#f20606" layoutX="5.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ERROR:" textAlignment="CENTER" wrappingWidth="237.341796875" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
